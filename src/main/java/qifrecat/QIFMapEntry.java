@@ -12,6 +12,9 @@ import lombok.Getter;
 @Data
 class QIFMapEntry {
 
+
+
+
     @Data
     class MEKey {
 
@@ -30,4 +33,9 @@ class QIFMapEntry {
     MEKey key;
     @Getter
     MEValue value;
+
+    public QIFMapEntry() {
+        key= new MEKey();
+        value = new MEValue();
+    }
 }

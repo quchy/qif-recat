@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +14,11 @@ import java.util.Map;
 public class QIFMap {
 
     @NonNull
-    private Map<QIFMapEntry.MEKey, QIFMapEntry.MEValue> Entries;
+    Map<QIFMapEntry.MEKey, QIFMapEntry.MEValue> Entries;
+
+    public QIFMap() {
+        Entries = new HashMap<>();
+    }
 
 
     void put(QIFMapEntry qifMapEntry) {
