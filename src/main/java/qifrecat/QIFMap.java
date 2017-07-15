@@ -20,7 +20,6 @@ public class QIFMap {
         Entries = new HashMap<>();
     }
 
-
     void put(QIFMapEntry qifMapEntry) {
         Entries.put(qifMapEntry.getKey(), qifMapEntry.getValue());
     }

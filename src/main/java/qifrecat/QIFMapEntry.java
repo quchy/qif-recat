@@ -8,7 +8,6 @@ import lombok.Getter;
  * Single Map entry
  */
 
-
 @Data
 class QIFMapEntry {
 
