@@ -1,18 +1,17 @@
 package qifrecat;
 
+import lombok.Cleanup;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -24,7 +23,7 @@ import java.util.Map;
 class MappingCtrl {
 
     @NonNull
-    private Map<MEKey, MEValue> MappedEntries;  // Store mapping data
+    private QIFMap MappedEntries;  // Store mapping data
 
     @NonNull
     private  String FileNameQIF;                // QIF file (to be converted)
@@ -43,18 +42,72 @@ class MappingCtrl {
         FileNameQIF = args[0];
         FileNameMapper = args[1];
         // To Store Mapper rules
-        MappedEntries = new HashMap<>();
+        MappedEntries = new QIFMap();
     }
 
 
     void run() throws IOException {
 
+
+
         log.info("Start mapping");
 
+        // Load Mapping info
         populateMap();
 
+        // Read QIF and save updated info
+        log.info("Opening input file of '" + FileNameQIF + "'");
+        @Cleanup BufferedReader inputStream = new BufferedReader(new FileReader(FileNameQIF));
 
+        String FileNameQIFOut = FileNameQIF.replaceFirst(".qif", "_RC.qif");
+        log.info("Output file name: '" + FileNameQIFOut + "'");
+        @Cleanup PrintWriter outputStream = new PrintWriter(new FileWriter(FileNameQIFOut));
+
+
+        String QIFLine = null;
+        String origPayee = null;
+        while ((QIFLine = inputStream.readLine()) != null) {
+
+            if (QIFLine.isEmpty()) continue;
+            // Payee input field is useless
+            if (QIFLine.charAt(0) == 'P') {
+                if (QIFLine.length() == 1)  throw new IOException("Paye not defined. Maybe wrong export. Pending transactions are not allowed here.");
+                origPayee = QIFLine.substring(1, QIFLine.length());
+                continue;
+            }
+
+            // Memo field holds lots of valuable info. Including our keys.
+            if (QIFLine.charAt(0) == 'M'){
+
+                QIFMapEntry.MEValue result= MappedEntries.findValue(QIFLine);
+                if ( result == null ) {
+                    result = new QIFMapEntry().getValue();
+                    result.setPayee(origPayee);
+                    result.setArea("");
+                    result.setCategory("");
+                }
+
+                outputStream.println("P"+result.getPayee());
+
+                String Label = "L"+result.getCategory() + "/" + result.getArea();
+                if (Label.length() > 2) outputStream.println(Label);
+                if (QIFLine.trim().length() == 1) QIFLine = "M"+result.getPayee();
+
+            }
+            outputStream.println(QIFLine);
+
+            if (QIFLine.startsWith("^") == true) {
+                outputStream.println();
+                origPayee = null;
+            }
+        }
+
+        log.info("Mission completed");
     }
+
+
+
+
 
 
 
@@ -72,18 +125,18 @@ class MappingCtrl {
         // Read and store each items
         for (int i = 0; i < jsonContent.length(); i++) {
 
-            MEKey key = new MEKey();
-            key.setKey1(jsonContent.getJSONObject(i).getString("Mem1"));
-            key.setKey2(jsonContent.getJSONObject(i).getString("Mem2"));
+            QIFMapEntry entry = new QIFMapEntry();
 
-            MEValue value = new MEValue();
-            value.setPayee(jsonContent.getJSONObject(i).getString("Payee"));
-            value.setCategory(jsonContent.getJSONObject(i).getString("Category"));
-            value.setArea(jsonContent.getJSONObject(i).getString("Area"));
+            entry.getKey().setKey1(jsonContent.getJSONObject(i).getString("Mem1"));
+            entry.getKey().setKey2(jsonContent.getJSONObject(i).getString("Mem2"));
+
+            entry.getValue().setPayee(jsonContent.getJSONObject(i).getString("Payee"));
+            entry.getValue().setCategory(jsonContent.getJSONObject(i).getString("Category"));
+            entry.getValue().setArea(jsonContent.getJSONObject(i).getString("Area"));
 
             // Save it into a map
-            MappedEntries.put(key, value);
-            log.info("Processed map entry: " + key + " --> " +value);
+            MappedEntries.put(entry);
+            log.info("Processed map entry: " + entry.getKey() + " --> " + entry.getValue());
         }
     }
 
