@@ -47,7 +47,6 @@ class MappingCtrl {
 
 
     void run() throws IOException {
-
         log.info("Start mapping");
 
         // Load Mapping info
