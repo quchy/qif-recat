@@ -4,6 +4,10 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
+import java.io.IOException;
+
+import static org.junit.Assert.assertNull;
+
 /**
  * Created by zskucsak on 15/07/2017.
  */
@@ -56,15 +60,17 @@ public class MappingCtrlTest {
     }
 
 
-
-
-
-
     @org.junit.Test
-    @Ignore("Not ready yet")
     public void run() throws Exception {
-        // TODO
-        assert (true);
+
+        String  args[] = {"src/test/resources/Test.qif", "src/test/resources/QIFTestMap.json"};
+        MappingCtrl ctrl = new MappingCtrl(args);
+
+
+        ctrl.run();
+
+        assert (ctrl.MappedEntries.KeyEntries.size() > 0);
+
     }
 
 }

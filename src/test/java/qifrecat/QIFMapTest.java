@@ -1,6 +1,10 @@
 package qifrecat;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
@@ -26,6 +30,8 @@ public class QIFMapTest {
     @org.junit.Test
     public void LoadTestJson() {
 
+        try { Files.delete(Paths.get("/src/test/resources/Test_RC.qif")); } catch(Exception e) {}
+
         String  args[] = {"not needed", "src/test/resources/QIFTestMap.json"};
         MappingCtrl ctrl = new MappingCtrl(args);
 
@@ -35,8 +41,8 @@ public class QIFMapTest {
             assertNull (e);
         }
 
-        assert (ctrl.MappedEntries.Entries.size() > 0);
+        assert (ctrl.MappedEntries.KeyEntries.size() > 0);
+        assertNotNull(Paths.get("/src/test/resources/Test_RC.qif") );
     }
-
 
 }

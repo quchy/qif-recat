@@ -26,3 +26,4 @@ hs_err_pid*
 .idea/
 target/
 qif-recat.iml
+/src/test/resources/Test_RC.qif
