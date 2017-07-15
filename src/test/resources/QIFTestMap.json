@@ -1,0 +1,86 @@
+{
+  "QIFMap": [
+
+    {
+      "Mem1":     "KLIER",
+      "Mem2":     "",
+      "Payee":    "Klier",
+      "Category":	"Personal Care",
+      "Area": 	"Personal"
+    },
+
+    {
+      "Mem1":     "VISION EXPRESS",
+      "Mem2":     "",
+      "Payee":    "Vision Express",
+      "Category":	"Personal Care:Eyecare",
+      "Area": 	"Personal"
+    },
+
+    {
+      "Mem1":      "K401",
+      "Mem2":      "",
+      "Payee":     "IND",
+      "Category":	"Bills:Retirement",
+      "Area": 	"Personal"
+    },
+
+    {
+      "Mem1":      "Erkel",
+      "Mem2":      "",
+      "Payee":     "Erkel House",
+      "Category":  "Bills:Homeowner's Dues",
+      "Area":      "Home"
+
+    },
+
+    {
+      "Mem1":     "CIB" ,
+      "Mem2":     "Mortgage",
+      "Payee":    "CIB",
+      "Category":	"Bills:Mortgage Payment",
+      "Area": 	"Home"
+    },
+
+    {
+      "Mem1":      "Electric",
+      "Mem2":      "555001234",
+      "Payee":     "ElectricCo",
+      "Category":  "Bills:Electricity",
+      "Area":      "Home"
+
+    },
+
+    {
+      "Mem1":     "UPC",
+      "Mem2":     "",
+      "Payee":    "UPC",
+      "Category":	"Bills:Internet",
+      "Area": 	"Home"
+    },
+
+    {
+      "Mem1":     "MCDONALDS",
+      "Mem2":     "",
+      "Payee":    "MCD",
+      "Category":	"Food:Junk",
+      "Area": 	"Personal"
+    },
+
+    {
+      "Mem1":     "MCDHU",
+      "Mem2":     "",
+      "Payee":    "MCD",
+      "Category":	"Food:Junk",
+      "Area": 	"Personal"
+    },
+
+    {
+      "Mem1":     "ATLATSZOHUK",
+      "Mem2":     "",
+      "Payee":    "Atlatszo.hu",
+      "Category":	"Charitable Donations",
+      "Area": 	"Personal"
+    }
+  ]
+}

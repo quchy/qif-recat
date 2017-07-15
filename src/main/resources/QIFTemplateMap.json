@@ -1,0 +1,14 @@
+{
+  "QIFMap": [
+
+    {
+      "Mem1":       "<Memo ket text 1>",
+      "Mem2":       "<Memo ket text 2>",
+      "Payee":      "<Counterparty>",
+      "Category":   "<Payment Category>",
+      "Area": 	    "<Payment Area>"
+    }
+
+
+  ]
+}
