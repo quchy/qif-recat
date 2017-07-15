@@ -23,13 +23,13 @@ import java.util.List;
 class MappingCtrl {
 
     @NonNull
-    private QIFMap MappedEntries;  // Store mapping data
+    QIFMap MappedEntries;  // Store mapping data
 
     @NonNull
-    private  String FileNameQIF;                // QIF file (to be converted)
+    protected   String FileNameQIF;                // QIF file (to be converted)
 
     @NonNull
-    private  String FileNameMapper;             // Input map file (json)
+    String FileNameMapper;             // Input map file (json)
 
 
     MappingCtrl(String[] args) {
@@ -106,9 +106,7 @@ class MappingCtrl {
 
 
 
-
-
-    private  void populateMap()  throws IOException {
+    protected   void populateMap()  throws IOException {
         log.info("Read mapping info");
 
         // Reading file
