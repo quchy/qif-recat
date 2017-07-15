@@ -26,7 +26,7 @@ public class QIFMapTest {
     @org.junit.Test
     public void LoadTestJson() {
 
-        String  args[] = {"not needed", "src\\test\\resources\\QIFTestMap.json"};
+        String  args[] = {"not needed", "src/test/resources/QIFTestMap.json"};
         MappingCtrl ctrl = new MappingCtrl(args);
 
         try {
