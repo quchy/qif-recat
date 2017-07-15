@@ -19,15 +19,18 @@ import java.util.List;
  * Controller class - doing the heavy lifting
  */
 
+@SuppressWarnings({"ALL", "WeakerAccess"})
 @Log
 class MappingCtrl {
 
     @NonNull
     QIFMap MappedEntries;  // Store mapping data
 
+    @SuppressWarnings("WeakerAccess")
     @NonNull
     protected   String FileNameQIF;                // QIF file (to be converted)
 
+    @SuppressWarnings("WeakerAccess")
     @NonNull
     String FileNameMapper;             // Input map file (json)
 
@@ -106,6 +109,7 @@ class MappingCtrl {
 
 
 
+    @SuppressWarnings("WeakerAccess")
     protected   void populateMap()  throws IOException {
         log.info("Read mapping info");
 

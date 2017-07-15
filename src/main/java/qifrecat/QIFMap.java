@@ -1,16 +1,12 @@
 package qifrecat;
 
-import lombok.Data;
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by quchy on 15/07/2017.
- * Stroing mapping rules
+ * Storing mapping rules
  */
 public class QIFMap {
 
