@@ -11,9 +11,6 @@ import lombok.Getter;
 @Data
 class QIFMapEntry {
 
-
-
-
     @Data
     class MEKey {
 
