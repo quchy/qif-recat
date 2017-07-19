@@ -11,5 +11,4 @@ public class QifRecat {
         MappingCtrl ctrl = new MappingCtrl(args);
         ctrl.run();
     }
-
 }
