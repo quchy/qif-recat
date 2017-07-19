@@ -5,7 +5,7 @@ package qifrecat;
  * Entry point. There's nothing here...
  */
 
-public class QifRecat {
+class QifRecat {
 
     public static void main(String[] args) throws  Exception {
         MappingCtrl ctrl = new MappingCtrl(args);

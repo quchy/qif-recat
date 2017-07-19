@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class QIFMap {
 
     @NonNull
-    ArrayList<QIFMapEntry.MEKey> KeyEntries;
-    ArrayList<QIFMapEntry.MEValue> ValueEntries;
+    final ArrayList<QIFMapEntry.MEKey> KeyEntries;
+    final ArrayList<QIFMapEntry.MEValue> ValueEntries;
 
     public QIFMap() {
         KeyEntries = new ArrayList<>();
